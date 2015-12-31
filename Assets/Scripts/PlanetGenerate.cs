@@ -21,8 +21,9 @@ public class PlanetGenerate : MonoBehaviour {
 		Vector3[] vertices = mesh.vertices;
 		int i = 0;
 		while (i < vertices.Length) {
-			Vector3 pos = vertices[i] * 200;
+			Vector3 pos = vertices[i] * 20;
 			vertices[i] = vertices[i] * (float)(100 + noise.GetValue(pos.x, pos.y, pos.z) * 2);
+			Debug.Log (i);
 			i++;
 		}
 		mesh.vertices = vertices;
