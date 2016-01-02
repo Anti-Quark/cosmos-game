@@ -25,7 +25,7 @@ public class Gravity : MonoBehaviour {
 				continue;
 			Vector3 direction = (planet.position - pos);
 			acc += G / (direction.normalized.magnitude / planet.mass) / direction.sqrMagnitude;
-			Debug.Log(acc.ToString)
+			Debug.Log (acc);
 		}
 		myRigidbody.velocity += acc; 
 	}
