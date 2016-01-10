@@ -16,6 +16,9 @@ public class PlanetGenerate : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		noise = new Perlin();
+		noise.Frequency = frequency;
+		noise.OctaveCount = octaves;
+		noise.Persistence = amplitude;
 
 		Mesh mesh = GetComponent<MeshFilter>().mesh;
 		Vector3[] vertices = mesh.vertices;

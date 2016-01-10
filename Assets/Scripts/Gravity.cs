@@ -13,6 +13,7 @@ public class Gravity : MonoBehaviour {
 
 	void  Start (){
 		planets = FindObjectsOfType (typeof(Rigidbody)) as Rigidbody[];
+		Debug.Log (planets);
 		myRigidbody = GetComponent<Rigidbody>();
 		myRigidbody.velocity = transform.TransformDirection(initialForwardSpeed);
 	}
@@ -24,7 +25,7 @@ public class Gravity : MonoBehaviour {
 			if (planet == myRigidbody)
 				continue;
 			Vector3 direction = (planet.position - pos);
-			acc += G / (direction.normalized.magnitude / planet.mass) / direction.sqrMagnitude;
+			acc += G * (direction.magnitude / planet.mass) / direction.sqrMagnitude;
 			Debug.Log (acc);
 		}
 		myRigidbody.velocity += acc; 
