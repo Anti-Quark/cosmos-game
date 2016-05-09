@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Gravity : MonoBehaviour {
-	static Vector3 G = new Vector3(0.01f,0.01f,0.01f); // adjust with try & error
+	static float G = 1000; // adjust with trial & error
 
 	Rigidbody[] planets;
 	private Rigidbody myRigidbody;
@@ -19,15 +19,19 @@ public class Gravity : MonoBehaviour {
 	}
 	void  Update (){
 		Vector3 pos = myRigidbody.position;
-		Vector3 acc = Vector3.zero;
+		float force = 0;
+		Vector3 dir = new Vector3 (0, 0, 0);
 		foreach(var planet in planets)
 		{
 			if (planet == myRigidbody)
-				continue;
-			Vector3 direction = (planet.position - pos);
-			acc += G * (direction.magnitude / planet.mass) / direction.sqrMagnitude;
-			Debug.Log (acc);
+				return;
+			dir = planet.position - pos;
+			force = G * (myRigidbody.mass / planet.mass) / Vector3.Distance(pos, planet.position); //Newton's law of universal gravitation
+			//Debug.Log (planet.mass);
+			//Debug.Log (Vector3.Distance (pos, planet.position));
+			//Debug.Log (force); 
+			Debug.Log(dir.ToString());
+			myRigidbody.AddForce (dir * force);
 		}
-		myRigidbody.velocity += acc; 
 	}
 }
